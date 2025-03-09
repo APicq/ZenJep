@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %} JeppBook {% endblock %}
+
+
+
+
+{% block content %}
+  <h1>Jeppesen LogBook</h1>
+  {% for book in bookshelf %}
+    <h3>Start of book</h3>
+    {% for page in book.pages %}
+      <p> page number {{ loop.index }}</p>
+      <table class="jepp-page">
+	<tr>
+	  <th> Date </th>
+	  <th> From </th>
+	  <th> Time </th>
+	  <th> To </th>
+	  <th> Time </th>
+	  <th> Model </th>
+	  <th> Registration</th>
+	  <th> single pilot time se </th>
+	  <th> single pilot time me </th>
+	  <th> multi-pilot time </th>
+	  <th> total flight time </th>
+	  <th> name pic </th>
+	  <th> takeoffs day </th>
+	  <th> take off night </th>
+	  <th> landing day </th>
+	  <th> landing night </th>
+	  <th> night flight </th>
+	  <th> ifr flight </th>
+	  <th> pic time </th>
+	  <th> copilot time </th>
+	  <th> dual time </th>
+	  <th> instructor time </th>
+	  <th> sim date </th>
+	  <th> sim type </th>
+	  <th> sim time </th>
+	  <th> remarks </th>
+	</tr>
+	{% for line in page.flightlinelist %}
+	  <tr>
+	    <td>{{ line.date }}</td>
+	    <td>{{ line.airport_departure }}</td>
+	    <td>{{ line.time_departure }}</td>
+	    <td>{{ line.airport_arrival }}</td>
+	    <td>{{ line.time_arrival }}</td>
+	    <td>{{ line.acmodel }}</td>
+	    <td>{{ line.immatriculation }}</td>
+	    <td>{% if line.single_pilot_time_se %} X {% endif %}</td>
+	    <td>{% if line.single_pilot_time_me %} X {% endif %}</td>
+	    <td>{{ line.multi_pilot_time }}</td>
+	    <td>{{ line.total_flight_time }}</td>
+	    <td>{{ line.name_pic }}</td>
+	    <td>{% if line.takeoff_day > 0 %} {{ line.takeoff_day }} {% endif %}</td>
+	    <td>{% if line.takeoff_night > 0 %} {{ line.takeoff_night }} {% endif %}</td>
+	    <td>{% if line.landing_day > 0 %} {{ line.landing_day }} {% endif %}</td>
+	    <td>{% if line.landing_night > 0 %} {{ line.landing_night }} {% endif %}</td>
+	    <td>{{ line.operational_condition_time_night }}</td>
+	    <td>{{ line.operational_condition_time_ifr }}</td>
+	    <td>{{ line.pilot_in_command_time }}</td>
+	    <td>{{ line.copilot_time }}</td>
+	    <td>{{ line.dual_time }}</td>
+	    <td>{{ line.instructor_time }}</td>
+	    <td>{% if line.is_sim %} {{ line.sim_date }} {% endif %}</td>
+	    <td>{{ line.sim_type }}</td>
+	    <td>{{ line.sim_total_time_of_session }}</td>
+	    <td>{{ line.remark }}</td>
+	  </tr>
+	{% endfor %}
+      </table>
+      <!-- bottom part of page with sumups -->
+	</br>
+	<table class="jepp-sumup">
+	  <tr>
+	    <th></th>
+	    <th>MULTI-PILOT TIME</th>
+	    <th>TOTAL TIME</th>
+	    <th>TAKE-OFF DAY</th>
+	    <th>TAKE-OFF NIGHT</th>
+	    <th>LANDING DAY</th>
+	    <th>LANDING NIGHT</th>
+	    <th>TIME NIGHT</th>
+	    <th>TIME IFR</th>
+	    <th>TIME PILOT IN COMMAND</th>
+	    <th>time copilot</th>
+	    <th>time dual</th>
+	    <th>time instructor</th>
+	    <th>time simulator</th>
+	  </tr>
+
+	  <tr>
+	    <td>total this page</td>
+	    <td>{{ page.total_this_page.multi_pilot_time }}</td>
+	    <td>{{ page.total_this_page.total_flight_time }}</td>
+	    <td>{{ page.total_this_page.takeoff_day }}</td>
+	    <td>{{ page.total_this_page.takeoff_night }}</td>
+	    <td>{{ page.total_this_page.landing_day }}</td>
+	    <td>{{ page.total_this_page.landing_night }}</td>
+	    <td>{{ page.total_this_page.operational_condition_time_night }}</td>
+	    <td>{{ page.total_this_page.operational_condition_time_ifr }}</td>
+	    <td>{{ page.total_this_page.pilot_in_command_time }}</td>
+	    <td>{{ page.total_this_page.copilot_time }}</td>
+	    <td>{{ page.total_this_page.dual_time }}</td>
+	    <td>{{ page.total_this_page.instructor_time }}</td>
+	    <td>{{ page.total_this_page.sim_total_time_of_session }}</td>
+	  </tr>
+
+	  <tr>
+	    <td>total p.pages</td>
+	    <td>{{ page.total_from_previous_pages.multi_pilot_time }}</td>
+	    <td>{{ page.total_from_previous_pages.total_flight_time }}</td>
+	    <td>{{ page.total_from_previous_pages.takeoff_day }}</td>
+	    <td>{{ page.total_from_previous_pages.takeoff_night }}</td>
+	    <td>{{ page.total_from_previous_pages.landing_day }}</td>
+	    <td>{{ page.total_from_previous_pages.landing_night }}</td>
+	    <td>{{ page.total_from_previous_pages.operational_condition_time_night }}</td>
+	    <td>{{ page.total_from_previous_pages.operational_condition_time_ifr }}</td>
+	    <td>{{ page.total_from_previous_pages.pilot_in_command_time }}</td>
+	    <td>{{ page.total_from_previous_pages.copilot_time }}</td>
+	    <td>{{ page.total_from_previous_pages.dual_time }}</td>
+	    <td>{{ page.total_from_previous_pages.instructor_time }}</td>
+	    <td>{{ page.total_from_previous_pages.sim_total_time_of_session }}</td>
+	  </tr>
+	  <!--
+	      <tr>
+		<td>total this book</td>
+		<td>{{ page.total_this_book.multi_pilot_time }}</td>
+		<td>{{ page.total_this_book.total_flight_time }}</td>
+		<td>{{ page.total_this_book.takeoff_day }}</td>
+		<td>{{ page.total_this_book.takeoff_night }}</td>
+		<td>{{ page.total_this_book.landing_day }}</td>
+		<td>{{ page.total_this_book.landing_night }}</td>
+		<td>{{ page.total_this_book.operational_condition_time_night }}</td>
+		<td>{{ page.total_this_book.operational_condition_time_ifr }}</td>
+		<td>{{ page.total_this_book.pilot_in_command_time }}</td>
+		<td>{{ page.total_this_book.copilot_time }}</td>
+		<td>{{ page.total_this_book.dual_time }}</td>
+		<td>{{ page.total_this_book.instructor_time }}</td>
+		<td>{{ page.total_this_book.sim_total_time_of_session }}</td>
+	      </tr>
+	      -->
+	      
+	      <tr>
+		<td>total overall</td>
+		<td>{{ page.total_overall.multi_pilot_time }}</td>
+		<td>{{ page.total_overall.total_flight_time }}</td>
+		<td>{{ page.total_overall.takeoff_day }}</td>
+		<td>{{ page.total_overall.takeoff_night }}</td>
+		<td>{{ page.total_overall.landing_day }}</td>
+		<td>{{ page.total_overall.landing_night }}</td>
+		<td>{{ page.total_overall.operational_condition_time_night }}</td>
+		<td>{{ page.total_overall.operational_condition_time_ifr }}</td>
+		<td>{{ page.total_overall.pilot_in_command_time }}</td>
+		<td>{{ page.total_overall.copilot_time }}</td>
+		<td>{{ page.total_overall.dual_time }}</td>
+		<td>{{ page.total_overall.instructor_time }}</td>
+		<td>{{ page.total_overall.sim_total_time_of_session }}</td>
+	      </tr>
+	</table>
+	<hr>
+      {% endfor %}
+    {% endfor %}
+  {% endblock %}

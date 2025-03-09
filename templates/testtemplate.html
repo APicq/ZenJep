@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} testing area {% endblock %}
+
+{% block content %}
+<h2> Test </h2>
+<p> {{ a_string }}</p>
+<p> {{ a_int }}</p>
+<p> {{ a_toto }}</p>
+
+<form action="/testtemplate">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <label for="mydate">a date:</label><br>
+  <input type="date" id="mydate" name="mydate"><br>
+  <label for="mycheck">a checkbox:</label><br>
+  <input type="checkbox" name="mycheck"><br>
+  <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

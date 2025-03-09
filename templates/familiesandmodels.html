@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} Aircrafts Families {% endblock %}
+
+
+
+{% block content %}
+  <h1>Aircrafts Families</h1>
+  <h2>Aircrafts Families and models</h2>
+  <table>
+      <tr>
+	<th> family name </th>
+	<th> model name </th>
+      </tr>
+    {% for family_model in families_models %}
+      <tr>
+	<td> {{ family_model.family_name }} </td>
+	<td> {{ family_model.model_name }} </td>
+      </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <h2>Aircraft models description</h2>
+  <table>
+    <tr>
+      <th> actype </th>
+      <th> nb_engines </th>
+      <th> mtow </th>
+      <th> multipilot </th>
+      <th> cat1 </th>
+      <th> cat2 </th>
+      <th> cat3 </th>
+    </tr>
+    {% for (name,model) in models %}
+      <tr>
+	<td> {{ name }} </td>
+	<td> {{ model.nb_engines }} </td>
+	<td> {{ model.mtow }} </td>
+	<td> {{ model.multipilot }} </td>
+	<td> {{ model.category_1 }} </td>
+	<td> {{ model.category_2 }} </td>
+	<td> {{ model.category_3 }} </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

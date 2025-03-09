@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} JeppBook {% endblock %}
+
+
+
+
+{% block content %}
+    <h1>Total time by years and months</h1>
+    <table class="years">
+      <tr>
+	<th> Year </th>
+	<th> Jan </th>
+	<th> Feb </th>
+	<th> Mar </th>
+	<th> Apr </th>
+	<th> May </th>
+	<th> Jun </th>
+	<th> Jul </th>
+	<th> Aug </th>
+	<th> Sep </th>
+	<th> Oct </th>
+	<th> Nov </th>
+	<th> Dec </th>
+	<th> Tot.Year </th>
+	<th> Tot </th>
+      </tr>
+      {% for year in years %}
+      <tr>
+	<td>{{ year.year }}</td>
+	{% for month in year.months %}
+	<td> {{ month.total_month }}</td>
+	{% endfor %}
+	<td> {{ year.months[11].total_this_year }}</td>
+	<td> {{ year.months[11].total_overall }}</td>	
+      </tr>
+      {% endfor %}
+    </table>
+{% endblock %}

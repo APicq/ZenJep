@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %} Aircrafts {% endblock %}
+
+
+
+{% block content %}
+    <h1>Aircrafts Models</h1>
+    <table>
+      {% for aircraft_model_html in models %}
+      <tr>
+	<td> {{ aircraft_model_html.name }} </td>
+	<td> {{ aircraft_model_html.time }} </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <hr>
+    <table>
+      <td> total </td> <td> {{ total_time_all_models }} </td>
+    </table>
+    <h1>Aircraft Families</h1>
+    <table>
+      {% for aircraft_family_html in families %}
+      <tr>
+	<td> {{ aircraft_family_html.name }} </td>
+	<td> {{ aircraft_family_html.time }} </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <hr>
+    <table>
+      <td> total </td> <td> {{ total_time_all_families }} </td>
+    </table>    
+{% endblock %}
