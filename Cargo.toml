@@ -1,0 +1,19 @@
+[package]
+name = "zenjep"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+anyhow = "1.0.66"
+askama = { version = "0.11.1", features = ["with-tide", "serde-yaml"] }
+askama_tide = { version="0.14" }
+async-std = { version = "1.12.0", features = ["attributes"] }
+clap = "4.0.32"
+indexmap = "1.9.2"
+log = "0.4"
+serde = "1.0.152"
+simple_logger = "4.0.0"
+strict-yaml-rust = "0.1"
+tide = "0.16.0"
+time  = { version="0.3", features= ["parsing"] }

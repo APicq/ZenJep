@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    {% block style %}
+    <style>
+      body {
+	  background-color: linen;
+      }
+
+      h1 {
+	  color: maroon;
+	  margin-left: 40px;
+      }
+
+      table.jepp-page,
+      table.jepp-sumup,
+      table.years {
+	  background-color: white;
+      }
+      
+      table.jepp-page tr:nth-child(even) {
+	  background-color: #e3e3e3;
+      }
+
+      table.jepp-sumup td {
+	  background-color:#eaf6f6;
+      }
+
+      table, th, td {
+	  border: 1px solid;
+	  border-collapse: collapse;
+      }
+
+      th,td {
+	  padding: 0.5em;
+	  text-align: center;
+      }
+
+      .button {
+	  border: none;
+	  color: white;
+	  padding: 15px 32px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 16px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+      }
+
+      .button1 {background-color: #4CAF50;} /* Green */
+      .button2 {background-color: #008CBA;} /* Blue */
+      
+    </style>
+    {% endblock %}
+  </head>
+  <body>
+
+    <div id="menu">
+      <a class="button button1" href="/aircrafts">aircrafts</a>
+      <a class="button button2" href="/years">years</a>
+      <a class="button button1" href="/jeppesen">jeppesen</a>
+      <a class="button button2" href="/familiesandmodels">Families</a>
+      <a class="button button1" href="/filters">filters</a>
+      <a class="button button2" href="/">home</a>
+    </div>
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

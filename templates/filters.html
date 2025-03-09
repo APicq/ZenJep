@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %} Filters {% endblock %}
+
+{% block content %}
+<h2>Current Filters</h2>
+<table>
+  <tr id="flight-before-row">
+    <td>filter flight before</td><td>{{ flights_before }}</td><td id="flight-before-true">{{ flights_before_enabled }}</td>
+  </tr>
+  <tr id="flight-after-row">
+    <td>filter flight after</td><td>{{ flights_after }}</td><td id="flight-after-true">{{ flights_after_enabled }}</td>
+  </tr>
+  <tr id="model-row">
+    <td>filter model</td><td>{{ aircraft_model }}</td><td id="model-true">{{ aircraft_model_enabled }}</td>
+  </tr>
+  <tr id="family-row">
+    <td>filter family</td><td>{{ aircraft_family }}</td><td id="family-true">{{ aircraft_family_enabled }}</td>
+  </tr>
+</table>
+
+<h2> enter new filter : </h2>
+  <form action="/filters">
+
+    <label for="flights_before_enabled">flights before enabled</label>
+    <input type="checkbox" name="flights_before_enabled" value="true">
+    
+    <label for="flights_before">Show only flights before</label>
+    <input type="date" name="flights_before" value="">
+    <br>
+    
+    <label for="flights_after_enabled">flights after enabled</label>
+    <input type="checkbox" name="flights_after_enabled" value="true">
+        
+    <label for="flights_after">Show only flights after</label>
+    <input type="date" name="flights_after" value="">
+    <br>
+    
+    <!-- aircraft model -->
+    <label for="aircraft_model_enabled">models enabled</label>
+    <input type="checkbox" name="aircraft_model_enabled" value="true">
+   
+    
+    <label for="aircraft_model">Show only model :</label>
+    <input type="text" name="aircraft_model" value="">
+    <br>
+    
+    <!-- aircraft family -->
+    <label for="aircraft_family_enabled">familys enabled</label>
+    <input type="checkbox" name="aircraft_family_enabled" value="true">
+
+    <label for="aircraft_family">Show only family :</label>
+    <input type="text" name="aircraft_family" value="">
+    <br>
+    <br>
+    
+    <input type="submit" value="Submit">
+  </form>
+  <script>
+    function red_to_false(cell_id,row_id) {
+	if (document.getElementById(cell_id).innerHTML == "false") {
+	    document.getElementById(row_id).style["background-color"] = "red";
+	}
+    }
+    red_to_false("flight-before-true","flight-before-row");
+    red_to_false("flight-after-true","flight-after-row");
+    red_to_false("model-true","model-row");
+    red_to_false("family-true","family-row");
+  </script>
+{% endblock %}
